@@ -50,6 +50,11 @@ public class Grid
         return position[pos.x,pos.y].Occupier;
     }
 
+    public TileData GetTileData(int x, int y)
+    {
+        return position[x,y];
+    }
+
     public struct TileData
     {
         public TileType tile;

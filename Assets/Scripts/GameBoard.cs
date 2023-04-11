@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class GameBoard : MonoBehaviour
 {
-    #region singleton
+    #region Singleton
 
     private static GameBoard _instance;
     public static GameBoard Instance { get { return _instance; } }
@@ -38,7 +38,7 @@ public class GameBoard : MonoBehaviour
     }
     #endregion
 
-    #region mapManagement 
+    #region MapManagement 
     
     private Vector2Int mapSize;
     public Grid grid;
@@ -115,6 +115,8 @@ public class GameBoard : MonoBehaviour
 
     #endregion
    
+    #region Movement
+
     public void ShowMoveTiles(Unit callingUnit, List<Vector3Int> moves, List<Vector3Int> combatMoves)
     {
         UpdateValidMoveAndCombatPositions(callingUnit, moves, combatMoves, 1);
@@ -249,4 +251,15 @@ public class GameBoard : MonoBehaviour
             ShowMoveTiles(newPiece, newPiece.ShowMoveTilesBySpeedRange(),newPiece.ShowMoveTilesByAttackRange());
         }
     }
+
+    #endregion
+
+    #region Building
+
+    public void AddCityTile(int x, int y, Unit unit)
+    {
+        grid.GetTileData(x,y);
+    }
+
+    #endregion
 }
