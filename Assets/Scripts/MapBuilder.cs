@@ -19,11 +19,12 @@ public class MapBuilder : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-
+        if(useSceneMap){
         LoadMap();
+        }
     }
     #endregion
-
+    [SerializeField] private bool useSceneMap = true;
     [SerializeField] private Tilemap tileMap;
     [SerializeField] private Vector2Int mapSize;
     public TileBase grassTile, forestTile, waterTile, sandTile, mountainTile;

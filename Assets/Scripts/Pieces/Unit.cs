@@ -12,7 +12,7 @@ public class Unit : Piece
 
     void Start()
     {
-        if(faction == 1){body.color = Color.blue;}if(faction >= 2){body.color = Color.red;}
+        if(playerFaction){body.color = Color.blue;}else{body.color = Color.red;}
         maxHealth = health;
         TurnManager.Instance.AddPiece(this);
         GameBoard.Instance.RoundPiecePosition(this);

@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    public int faction;
+    public bool playerFaction;
     public Vector3Int origin;
 }

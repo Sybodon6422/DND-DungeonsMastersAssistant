@@ -23,6 +23,8 @@ public class GameBoard : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
+
+
     public bool drawDebug = false;
     public void SetupGameBoard(Vector2Int newMapSize, Grid.TileType[,] savedTileGrid)
     {
@@ -119,7 +121,7 @@ public class GameBoard : MonoBehaviour
 
     public void ShowMoveTiles(Unit callingUnit, List<Vector3Int> moves, List<Vector3Int> combatMoves)
     {
-        UpdateValidMoveAndCombatPositions(callingUnit, moves, combatMoves, 1);
+        UpdateValidMoveAndCombatPositions(callingUnit, moves, combatMoves, true);
 
         if (validMovePositions.Count > 0 || validCombatPositions.Count > 0)
         {
@@ -137,7 +139,7 @@ public class GameBoard : MonoBehaviour
     }
     }
 
-    public void UpdateValidMoveAndCombatPositions(Unit callingUnit, List<Vector3Int> moves, List<Vector3Int> combatMoves, int faction)
+    public void UpdateValidMoveAndCombatPositions(Unit callingUnit, List<Vector3Int> moves, List<Vector3Int> combatMoves, bool playerFaction)
     {
         validMovePositions.Clear();
         validCombatPositions.Clear();
@@ -157,9 +159,18 @@ public class GameBoard : MonoBehaviour
             if (IsWithinMapBounds(combatMove) && grid.GetIsOccupied(combatMove))
             {
                 var occupier = grid.GetOccupier(combatMove.x, combatMove.y);
-                if (occupier.faction != faction)
+                if(playerFaction)
                 {
-                    validCombatPositions.Add(combatMove);
+                    if (!occupier.playerFaction)
+                    {
+                        validCombatPositions.Add(combatMove);
+                    }
+                }else
+                {
+                if (occupier.playerFaction)
+                    {
+                        validCombatPositions.Add(combatMove);
+                    }
                 }
             }
         }
@@ -173,7 +184,7 @@ public class GameBoard : MonoBehaviour
             if (IsWithinMapBounds(combatMove) && grid.GetIsOccupied(combatMove))
             {
                 var occupier = grid.GetOccupier(combatMove.x, combatMove.y);
-                if (occupier.faction == 1)
+                if (occupier.playerFaction)
                 {
                     possibleCombatMovesList.Add(combatMove);
                 }
@@ -246,7 +257,7 @@ public class GameBoard : MonoBehaviour
     
     public void SelectNewPiece(Unit newPiece)
     {
-        if(newPiece.faction == 0)
+        if(newPiece.playerFaction)
         {
             ShowMoveTiles(newPiece, newPiece.ShowMoveTilesBySpeedRange(),newPiece.ShowMoveTilesByAttackRange());
         }

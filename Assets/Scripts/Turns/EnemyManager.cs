@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : Turn
+public class EnemyManager : MonoBehaviour
 {
     private Unit currentTurnPiece;
     private List<Vector3Int> possibleMoves;
@@ -30,7 +30,7 @@ public class EnemyManager : Turn
 
         // Get all possible moves for the current piece
         GetAllPossibleMoves();
-        GameBoard.Instance.UpdateValidMoveAndCombatPositions(currentTurnPiece, possibleMoves,possibleCombatMoves, 2);
+        GameBoard.Instance.UpdateValidMoveAndCombatPositions(currentTurnPiece, possibleMoves,possibleCombatMoves, false);
         // Find the closest enemy to the current piece
         Vector3Int closestEnemyPosition = FindClosestEnemyPosition(currentTurnPiece);
 
@@ -79,7 +79,7 @@ public class EnemyManager : Turn
     {
         List<Piece> enemyPieces;
 
-        if(callingUnit.faction == 1)
+        if(!callingUnit.playerFaction)
         {
             enemyPieces = TurnManager.Instance.EnemyPieces();
         }

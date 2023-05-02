@@ -20,11 +20,17 @@ public class TurnManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        playerManager = PlayerManager.Instance;
+        enemyManager = GetComponent<EnemyManager>();
     }
     #endregion
 
-    public List<Turn> turnOrderList;
     private int currentTurn;
+
+    private PlayerManager playerManager;
+    private EnemyManager enemyManager;
+
     void Start()
     {
         currentTurn = 0;
@@ -34,19 +40,13 @@ public class TurnManager : MonoBehaviour
 
     public void GameStart()
     {
-        foreach (var faction in turnOrderList)
-        {
-            CreateNewUnit(faction.unitGameObjects[0], faction.faction);
-        }
 
-        EndTurn();
     }
 
     public void NextTurn()
     {
-        turnOrderList[0].MyTurn();
     }
-
+    bool enemyTurn;
     bool turnWaiting;
     private float currentWaitTime = 1;
     private void FixedUpdate()
@@ -61,18 +61,18 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void CreateNewUnit(GameObject unitFab, int faction)
+    public void CreateNewUnit(GameObject unitFab)
     {
         var unitPiece = Instantiate(unitFab).GetComponent<Unit>();
         var tilePos = GameBoard.Instance.GetRandomSpawnPoint(unitPiece);
         unitPiece.ForceMove(GameBoard.Instance.GetWorldPositionFromCell(tilePos),tilePos);
         Debug.Log("TilePos: " + tilePos + " WorldPos: " + GameBoard.Instance.GetWorldPositionFromCell(tilePos));
-        unitPiece.faction = faction;
+        //if we end up using this function we'll need to set the faction
     }
 
     public void UnitDied(Unit deadUnit)
     {
-        turnOrderList[deadUnit.faction].UnitDied(deadUnit);
+
     }
 
     public void EndTurn()
@@ -90,7 +90,6 @@ public class TurnManager : MonoBehaviour
     {
         if(allPieces.Contains(newPiece)){return;}
         allPieces.Add(newPiece);
-        turnOrderList[newPiece.faction].units.Add(newPiece);
     }
 
     public List<Piece> EnemyPieces()
@@ -98,7 +97,7 @@ public class TurnManager : MonoBehaviour
         List<Piece> foundEnemyPieces = new List<Piece>();
         foreach (var _Piece in allPieces)
         {
-            if(_Piece.faction > 1){
+            if(!_Piece.playerFaction){
                 foundEnemyPieces.Add(_Piece);
             }
         }
@@ -110,7 +109,7 @@ public class TurnManager : MonoBehaviour
         List<Piece> foundEnemyPieces = new List<Piece>();
         foreach (var _Piece in allPieces)
         {
-            if(_Piece.faction == 1){
+            if(_Piece.playerFaction){
                 foundEnemyPieces.Add(_Piece);
             }
         }

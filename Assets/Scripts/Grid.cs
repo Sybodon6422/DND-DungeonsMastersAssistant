@@ -58,7 +58,6 @@ public class Grid
     public struct TileData
     {
         public TileType tile;
-        public Building building;
         public Unit Occupier;
 
         public bool IsTileWalkable(Unit unitCaller)
@@ -72,7 +71,6 @@ public class Grid
         public TileData(TileType typeOfTile)
         {
             tile = typeOfTile;
-            building = null;
             Occupier = null;
         }
     }
