@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class Warrior : Unit
 {
-    public int damageDealt;
-
-    public override int Attack()
-    {
-        return damageDealt;
-    }
+    
 }

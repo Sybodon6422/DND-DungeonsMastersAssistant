@@ -1,9 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Dice
 {
+    public static int Roll(DiceRoll diceType)
+    {
+        switch (diceType)
+        {
+            case DiceRoll.D20:
+            {
+                return RollD20();
+            }
+            case DiceRoll.D12:
+            {
+                return RollD12();
+            }
+            case DiceRoll.D10:
+            {
+                return RollD10();
+            }
+            case DiceRoll.D8:
+            {
+                return RollD8();
+            }
+            case DiceRoll.D6:
+            {
+                return RollD6();
+            }
+            case DiceRoll.D4:
+            {
+                return RollD4();
+            }
+        }
+        return 0;
+    }
+
     public static bool FlipCoin()
     {
         if(Random.Range(0,100)>50)

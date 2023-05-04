@@ -21,30 +21,47 @@ public class TurnManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
-        playerManager = PlayerManager.Instance;
-        enemyManager = GetComponent<EnemyManager>();
+        currentTurn = 0;
+        allPieces = new List<Unit>();
     }
     #endregion
 
     private int currentTurn;
-
-    private PlayerManager playerManager;
     private EnemyManager enemyManager;
-
-    void Start()
-    {
-        currentTurn = 0;
-        allPieces = new List<Piece>();
-    }
-
 
     public void GameStart()
     {
+        enemyManager = GetComponent<EnemyManager>();
 
+        foreach (var item in allPieces)
+        {
+            item.GameStart();
+        }
+
+        if(allPieces[currentTurn].playerFaction)
+        {
+            Debug.Log("PlayerTurn");
+            PlayerManager.Instance.MyTurn(allPieces[currentTurn]);
+        }else
+        {
+            Debug.Log("enemyTurn");
+            enemyManager.MyTurn(allPieces[currentTurn]);
+        }
     }
 
     public void NextTurn()
     {
+        if(currentTurn >=  allPieces.Count-1) { currentTurn = 0; }else { currentTurn++; }
+
+        if(allPieces[currentTurn].playerFaction)
+        {
+            PlayerManager.Instance.MyTurn(allPieces[currentTurn]);
+        }
+        else
+        {
+            enemyManager.MyTurn(allPieces[currentTurn]);
+        }
+
     }
     bool enemyTurn;
     bool turnWaiting;
@@ -84,7 +101,7 @@ public class TurnManager : MonoBehaviour
 
     #region Piece management
 
-    private List<Piece> allPieces;
+    private List<Unit> allPieces;
 
     public void AddPiece(Unit newPiece)
     {

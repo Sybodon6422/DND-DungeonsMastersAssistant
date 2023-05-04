@@ -33,7 +33,6 @@ public class EnemyManager : MonoBehaviour
         GameBoard.Instance.UpdateValidMoveAndCombatPositions(currentTurnPiece, possibleMoves,possibleCombatMoves, false);
         // Find the closest enemy to the current piece
         Vector3Int closestEnemyPosition = FindClosestEnemyPosition(currentTurnPiece);
-
         // Find the move that gets the piece closest to the closest enemy
         Vector3Int closestMove = Vector3Int.zero;
         float closestDistance = float.MaxValue;
@@ -68,6 +67,7 @@ public class EnemyManager : MonoBehaviour
         foreach (var item in possibleMoves)
         {
             if(GameBoard.Instance.AttemptMove(currentTurnPiece, item)){
+                Debug.Log("Something fucked up: Made first available choice");
                 return;
             }
         }
@@ -79,7 +79,7 @@ public class EnemyManager : MonoBehaviour
     {
         List<Piece> enemyPieces;
 
-        if(!callingUnit.playerFaction)
+        if(callingUnit.playerFaction)
         {
             enemyPieces = TurnManager.Instance.EnemyPieces();
         }

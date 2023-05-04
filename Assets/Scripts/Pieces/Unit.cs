@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class Unit : Piece
 {
+    [SerializeField] StatBlock stats;
+    public StatBlock GetStats(){return stats;}
+    public int weaponBonus = 0;
+    public Weapon weapon;
     public int health;
-    public int maxHealth;
     public int speed;
     public int attackRange;
     [SerializeField] private SpriteRenderer body;
 
     void Start()
     {
-        if(playerFaction){body.color = Color.blue;}else{body.color = Color.red;}
-        maxHealth = health;
         TurnManager.Instance.AddPiece(this);
+        speed = stats.speed/5;
+        health = stats.maxHealth;
+    }
+
+    public void GameStart()
+    {
+        if(playerFaction){body.color = Color.blue;}else{body.color = Color.red;}
         GameBoard.Instance.RoundPiecePosition(this);
         GameBoard.Instance.grid.SetIsOccupied(origin.x,origin.y,this);
         targetPosition = transform.position;
@@ -127,7 +135,7 @@ public class Unit : Piece
 
     public void TakeDamage(int damage){
         health -= damage;
-        GetComponent<PieceHudController>().UpdateHealthBar(health,maxHealth);
+        GetComponent<PieceHudController>().UpdateHealthBar(health,stats.maxHealth);
         if(health <= 0 )
         {
             GameBoard.Instance.grid.SetIsOccupied(origin.x,origin.y,null);

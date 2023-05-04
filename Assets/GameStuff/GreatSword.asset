@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a61e0a61f54ab4784664d9a66e1a68, type: 3}
+  m_Name: GreatSword
+  m_EditorClassIdentifier: 
+  diceAmmount: 2
+  dice: 4
+  damageType: 2
+  weaponType: 1
+  ammunition: 0
+  finesse: 0
+  heavy: 1
+  light: 0
+  loading: 0
+  range: 0
+  reach: 0
+  special: 0
+  thrown: 0
+  twoHanded: 1
+  versatile: 0
+  rangedWeaponRange: {x: 0, y: 0}
+  requiredAmmoType: {fileID: 0}
+  versatileWeaponDiceAmmount: 1
+  versatileWeaponDice: 0

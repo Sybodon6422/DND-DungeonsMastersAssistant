@@ -245,7 +245,7 @@ public class GameBoard : MonoBehaviour
                 var occupier = grid.GetOccupier(targetTilePos.x, targetTilePos.y);
                 if (occupier != null)
                 {
-                    occupier.TakeDamage(pieceForMoveAttempt.Attack());
+                    MakeAttack(pieceForMoveAttempt,occupier);
                     TurnManager.Instance.EndTurn();
                     return true;
                 }
@@ -255,6 +255,18 @@ public class GameBoard : MonoBehaviour
         return false;
     }
     
+    private void MakeAttack(Unit attacker, Unit defender)
+    {
+        var hitReg = CombatCalculator.DoesHit(Advantage.advantage, attacker.GetStats(),defender.GetStats(),defender.weaponBonus);
+        if(hitReg)
+        {
+            defender.TakeDamage(CombatCalculator.DamageDealtMelee(attacker.GetStats(),attacker.weapon,false,attacker.weaponBonus));
+        }else
+        {
+            //miss
+        }
+    }
+
     public void SelectNewPiece(Unit newPiece)
     {
         if(newPiece.playerFaction)

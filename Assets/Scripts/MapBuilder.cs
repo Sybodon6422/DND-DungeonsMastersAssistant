@@ -19,8 +19,12 @@ public class MapBuilder : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-        if(useSceneMap){
-        LoadMap();
+        if(!useSceneMap)
+        {
+            LoadMap();
+        }else
+        {
+            BuildSceneMap();
         }
     }
     #endregion
@@ -49,6 +53,25 @@ public class MapBuilder : MonoBehaviour
 
         MapSaveHandler mapper = new MapSaveHandler();
         mapper.SaveGame(new MapSaveData("New Map",tileData,mapSize));
+    }
+
+    private void BuildSceneMap()
+    {
+        tileData = new Grid.TileType[mapSize.x,mapSize.y];
+        for (int x = 0; x < mapSize.x; x++)
+        {
+            for (int y = 0; y < mapSize.y; y++)
+            {
+                var checkTile = tileMap.GetTile(new Vector3Int(x,y,0));
+                if(checkTile == grassTile) { tileData[x,y] = Grid.TileType.grass; }
+                else if(checkTile == forestTile) { tileData[x,y] = Grid.TileType.forest; }
+                else if(checkTile == waterTile) { tileData[x,y] = Grid.TileType.water; }
+                else if(checkTile == sandTile) { tileData[x,y] = Grid.TileType.sand; }
+                else if(checkTile == mountainTile) { tileData[x,y] = Grid.TileType.mountain; }
+            }
+        }
+
+        FinishMapLoad();
     }
 
     public void LoadMap()
