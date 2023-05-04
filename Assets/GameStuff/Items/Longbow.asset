@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8a61e0a61f54ab4784664d9a66e1a68, type: 3}
-  m_Name: Scimitar
+  m_Name: Longbow
   m_EditorClassIdentifier: 
   diceAmmount: 1
-  dice: 0
-  damageType: 0
-  weaponType: 0
+  dice: 3
+  damageType: 1
+  weaponType: 1
   finesse: 0
-  heavy: 0
+  heavy: 1
   light: 0
   loading: 0
   reach: 0
   special: 0
-  twoHanded: 0
+  twoHanded: 1
   versatile: 0
-  ammunition: 0
+  ammunition: 1
   thrown: 0
-  rangedWeaponRange: {x: 0, y: 0}
+  rangedWeaponRange: {x: 150, y: 600}
   requiredAmmoType: {fileID: 0}
   versatileWeaponDiceAmmount: 1
   versatileWeaponDice: 0

@@ -6212,6 +6212,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8428054509690694256, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 1abbdd77ea11aa246b0467e351286d31,
+        type: 2}
+    - target: {fileID: 8428054509690694256, guid: eb40cf88fd53548469c0362d59c9141c,
+        type: 3}
       propertyPath: damageDealt
       value: 8
       objectReference: {fileID: 0}
@@ -6238,6 +6244,11 @@ PrefabInstance:
     - target: {fileID: 8428054509690694256, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
       propertyPath: stats.simpleWeaponsProficiency
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428054509690694256, guid: eb40cf88fd53548469c0362d59c9141c,
+        type: 3}
+      propertyPath: stats.martialWeaponsProficiency
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8428054509690694257, guid: eb40cf88fd53548469c0362d59c9141c,
@@ -6248,7 +6259,7 @@ PrefabInstance:
     - target: {fileID: 8428054509690694257, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.76
       objectReference: {fileID: 0}
     - target: {fileID: 8428054509690694257, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
@@ -6258,7 +6269,7 @@ PrefabInstance:
     - target: {fileID: 8428054509690694257, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 8428054509690694257, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
@@ -6298,7 +6309,7 @@ PrefabInstance:
     - target: {fileID: 8428054509690694263, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
       propertyPath: m_Name
-      value: Warrior
+      value: Fighter
       objectReference: {fileID: 0}
     - target: {fileID: 8428054509690694263, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
@@ -6511,6 +6522,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8428054509690694256, guid: eb40cf88fd53548469c0362d59c9141c,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: dcf678565b290b244b804560ec5ec5f2,
+        type: 2}
+    - target: {fileID: 8428054509690694256, guid: eb40cf88fd53548469c0362d59c9141c,
+        type: 3}
       propertyPath: damageDealt
       value: 6
       objectReference: {fileID: 0}
@@ -6677,8 +6694,18 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon
       value: 
-      objectReference: {fileID: 11400000, guid: 1abbdd77ea11aa246b0467e351286d31,
+      objectReference: {fileID: 11400000, guid: 4acc56f645954ef4e9700f9617ca0309,
         type: 2}
+    - target: {fileID: 525928234881673945, guid: 9556491fac4edca40b6b422a3c88d4de,
+        type: 3}
+      propertyPath: stats.proficiencyBonus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 525928234881673945, guid: 9556491fac4edca40b6b422a3c88d4de,
+        type: 3}
+      propertyPath: stats.simpleWeaponsProficiency
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 525928234881673950, guid: 9556491fac4edca40b6b422a3c88d4de,
         type: 3}
       propertyPath: m_Name

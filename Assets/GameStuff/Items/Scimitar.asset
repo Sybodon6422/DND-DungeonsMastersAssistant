@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8a61e0a61f54ab4784664d9a66e1a68, type: 3}
-  m_Name: Club
+  m_Name: Scimitar
   m_EditorClassIdentifier: 
   diceAmmount: 1
-  dice: 0
-  damageType: 0
-  weaponType: 0
+  dice: 4
+  damageType: 2
+  weaponType: 1
   finesse: 0
   heavy: 0
   light: 0

@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8a61e0a61f54ab4784664d9a66e1a68, type: 3}
-  m_Name: Dagger
+  m_Name: Longsword
   m_EditorClassIdentifier: 
   diceAmmount: 1
-  dice: 5
-  damageType: 1
-  weaponType: 0
-  ammunition: 0
-  finesse: 1
+  dice: 3
+  damageType: 2
+  weaponType: 1
+  finesse: 0
   heavy: 0
-  light: 1
+  light: 0
   loading: 0
-  range: 1
   reach: 0
   special: 0
-  thrown: 1
   twoHanded: 0
-  versatile: 0
+  versatile: 1
+  ammunition: 0
+  thrown: 0
   rangedWeaponRange: {x: 0, y: 0}
   requiredAmmoType: {fileID: 0}
   versatileWeaponDiceAmmount: 1
-  versatileWeaponDice: 0
+  versatileWeaponDice: 2
