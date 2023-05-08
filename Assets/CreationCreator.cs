@@ -32,73 +32,33 @@ public class CreationCreator : MonoBehaviour
     
     public void BuyStatPoint(int statToBuy, bool sellPoint)
     {
-        switch (statToBuy)
+        int[] stats = new int[] { strength, dexterity, constitution, intelligence, wisdom, charisma };
+    
+        if (statToBuy < 0 || statToBuy >= stats.Length)
         {
-            case 0:
-            {
-                if(!sellPoint)
-                {
-                    if(ScoreIncreaseCost(strength)) { strength++; }
-                }else{
-                    if(ScoreDecreaseCost(strength)) { strength--; }
-                }
-                break;
-            }
-            case 1:
-            {
-                if(!sellPoint)
-                {
-                    if(ScoreIncreaseCost(dexterity)) { dexterity++; }
-                }else{
-                    if(ScoreDecreaseCost(dexterity)) { dexterity--; }
-                }
-                break;
-            }
-            case 2:
-            {
-                if(!sellPoint)
-                {
-                    if(ScoreIncreaseCost(constitution)) { constitution++; }
-                }else{
-                    if(ScoreDecreaseCost(constitution)) { constitution--; }
-                }
-                break;
-            }
-            case 3:
-            {
-                if(!sellPoint)
-                {
-                    if(ScoreIncreaseCost(intelligence)) { intelligence++; }
-                }else{
-                    if(ScoreDecreaseCost(intelligence)) { intelligence--; }
-                }
-                break;
-            }
-            case 4:
-            {
-                if(!sellPoint)
-                {
-                    if(ScoreIncreaseCost(wisdom)) { wisdom++; }
-                }else{
-                    if(ScoreDecreaseCost(wisdom)) { wisdom--; }
-                }
-
-                break;
-            }
-            case 5:
-            {
-                if(!sellPoint)
-                {
-                    if(ScoreIncreaseCost(charisma)) { charisma++; }
-                }else{
-                    if(ScoreDecreaseCost(charisma)) { charisma--; }
-                }
-                break;
-            }
+            return; // or throw an exception, depending on requirements
         }
+    
+        if (!sellPoint && ScoreIncreaseCost(stats[statToBuy]))
+        {
+            stats[statToBuy]++;
+        }
+        else if (sellPoint && ScoreDecreaseCost(stats[statToBuy]))
+        {
+            stats[statToBuy]--;
+        }
+    
+        strength = stats[0];
+        dexterity = stats[1];
+        constitution = stats[2];
+        intelligence = stats[3];
+        wisdom = stats[4];
+        charisma = stats[5];
+    
         UpdateStatDisplays();
-        pointsText.text = new string(statPointsLeft.ToString() + "/27");
+        pointsText.text = $"{statPointsLeft}/27";
     }
+
     [SerializeField] StatDisplay[] statDisplays;
     public CharacterRace race;
     private void UpdateStatDisplays()
@@ -120,84 +80,38 @@ public class CreationCreator : MonoBehaviour
 
     private bool ScoreIncreaseCost(int currentValue)
     {
-        if(currentValue == 8)
-        {
-            return HasPointsLeft(1);
-        }
-        else if(currentValue == 9)
-        {
-            return HasPointsLeft(1);
-        }
-        else if(currentValue == 10)
-        {
-            return HasPointsLeft(1);
-        }
-        else if(currentValue == 11)
-        {
-            return HasPointsLeft(1);
-        }
-        else if(currentValue == 12)
-        {
-            return HasPointsLeft(1);
-        }
-        else if(currentValue == 13)
-        {
-            return HasPointsLeft(2);
-        }
-        else if(currentValue == 14)
-        {
-            return HasPointsLeft(2);
-        }
-        else if(currentValue >=15)
+        if (currentValue < 8 || currentValue >= 15)
         {
             return false;
         }
-
-        return false;
+        else if (currentValue >= 8 && currentValue < 13)
+        {
+            statPointsLeft--;
+            return true;
+        }
+        else
+        {
+            statPointsLeft -= 2;
+            return true;
+        }
     }
 
     private bool ScoreDecreaseCost(int currentValue)
     {
-        if(currentValue == 8)
+        if (currentValue <= 8 || currentValue > 15)
         {
-            return false;
-        }
-        else if(currentValue == 9)
-        {
-            statPointsLeft += 1;
-            return true;
-        }
-        else if(currentValue == 10)
-        {
-            statPointsLeft += 1;
-            return true;
-        }
-        else if(currentValue == 11)
-        {
-            statPointsLeft += 1;
-            return true;
-        }
-        else if(currentValue == 12)
-        {
-            statPointsLeft += 1;
-            return true;
-        }
-        else if(currentValue == 13)
-        {
-            statPointsLeft += 2;
-            return true;
-        }
-        else if(currentValue == 14)
-        {
-            statPointsLeft += 2;
-            return true;
-        }
-        else if(currentValue ==15)
-        {
-            statPointsLeft += 2;
-            return true;
-        }
         return false;
+        }
+        else if (currentValue > 8 && currentValue <= 13)
+        {
+        statPointsLeft++;
+        return true;
+        }
+        else
+        {
+        statPointsLeft += 2;
+        return true;
+        }
     }
 
     private bool HasPointsLeft(int points)
@@ -212,23 +126,12 @@ public class CreationCreator : MonoBehaviour
 
     private int ModFromScore(int score)
     {
-        if(score == 1){return -5;}
-        else if(score <= 3){return -4;}
-        else if(score <= 5){return -3;}
-        else if(score <= 7){return -2;}
-        else if(score <= 9){return -1;}
-        else if(score <= 11){return 0;}
-        else if(score <= 13){return 1;}
-        else if(score <= 15){return 2;}
-        else if(score <= 17){return 3;}
-        else if(score <= 19){return 4;}
-        else if(score <= 21){return 5;}
-        else if(score <= 23){return 6;}
-        else if(score <= 25){return 7;}
-        else if(score <= 27){return 8;}
-        else if(score <= 29){return 9;}
-        else if(score <= 30){return 10;}
-        else if (score > 31){return 11;}
-    return -5;
+        int scoreMod = Mathf.FloorToInt((score-10)/2);
+        return scoreMod;
+    }
+
+    public void WriteCharacterToFile()
+    {
+        
     }
 }
