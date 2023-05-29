@@ -9,10 +9,11 @@ public class Unit : Piece
     public int weaponBonus = 0;
     public Weapon weapon;
     public int health;
-    public int speed;
-    public int attackRange;
+    private int speed;
+    private int attackRange = 1;
     [SerializeField] private SpriteRenderer body;
 
+    
     void Start()
     {
         TurnManager.Instance.AddPiece(this);

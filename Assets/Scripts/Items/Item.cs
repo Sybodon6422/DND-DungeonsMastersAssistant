@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : ScriptableObject
 {
-    // Start is called before the first frame update
+    public int weight;
     void Start()
     {
         

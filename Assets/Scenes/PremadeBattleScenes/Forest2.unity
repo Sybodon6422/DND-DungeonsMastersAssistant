@@ -6316,8 +6316,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8428054509690694256, guid: eb40cf88fd53548469c0362d59c9141c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eb40cf88fd53548469c0362d59c9141c, type: 3}
+--- !u!212 &1637629514 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8363530439860061361, guid: eb40cf88fd53548469c0362d59c9141c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1637629513}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1637629515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8428054509690694263, guid: eb40cf88fd53548469c0362d59c9141c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1637629513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1705493130
 GameObject:
   m_ObjectHideFlags: 0
@@ -6405,6 +6418,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1637629513}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1728171952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637629515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48f85cda5de9d84b88f2b2b453c7d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFaction: 1
+  origin: {x: 3, y: 1, z: 0}
+  stats:
+    maxHealth: 16
+    armorClass: 14
+    speed: 30
+    strength: 8
+    dexterity: 8
+    constitution: 8
+    intelligence: 8
+    wisdom: 8
+    charisma: 8
+    proficiencyBonus: 2
+    simpleWeaponsProficiency: 0
+    martialWeaponsProficiency: 1
+  weaponBonus: 0
+  weapon: {fileID: 11400000, guid: 1abbdd77ea11aa246b0467e351286d31, type: 2}
+  health: 12
+  body: {fileID: 1637629514}
 --- !u!1 &2003708842
 GameObject:
   m_ObjectHideFlags: 0
