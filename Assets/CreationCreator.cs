@@ -70,6 +70,8 @@ public class CreationCreator : MonoBehaviour
         prcWisdom = wisdom + race.wisBonus,
         prcCharisma = charisma + race.chrBonus;
 
+
+
         statDisplays[0].UpdateStatDisplay(prcStrength,ModFromScore(prcStrength));
         statDisplays[1].UpdateStatDisplay(prcDexterity,ModFromScore(prcDexterity));
         statDisplays[2].UpdateStatDisplay(prcConstitution,ModFromScore(prcConstitution));
